@@ -1,0 +1,4 @@
+<section class="wrapper">
+  <calendar (change)="onChange($event)"></calendar>
+  <dashboard [currentDay]="selected" (updateAppointments)="updateAppointments($event)"></dashboard>
+</section>

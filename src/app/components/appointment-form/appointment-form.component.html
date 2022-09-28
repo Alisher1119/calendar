@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add an appointment</h1>
+<div mat-dialog-content>
+  <p>Title</p>
+  <mat-form-field class="full-width" class="full-width" appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput [(ngModel)]="data.title">
+  </mat-form-field>
+  <div class="d-flex">
+    <mat-form-field appearance="fill">
+      <mat-label>From</mat-label>
+      <mat-select [(ngModel)]="data.from">
+        <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour | hour}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>To</mat-label>
+      <mat-select [(ngModel)]="data.to">
+        <mat-option *ngFor="let hour of hours" [value]="hour">{{ hour | hour}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-flat-button color="accent" (click)="onNoClick()">Close</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+</div>

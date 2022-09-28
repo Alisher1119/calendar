@@ -1,0 +1,28 @@
+<div class="dashboard">
+  <header class="dashboard__header">
+    <div class="time">{{ timezoneOffset | timezone }}</div>
+    <div class="header">
+      <div class="date date-primary">
+        <span>{{ weekDay | slice:0: 2 }}</span>
+        <div class="day">{{ day }}</div>
+      </div>
+    </div>
+  </header>
+  <section class="dashboard__table">
+    <div>
+      <div *ngFor="let hour of hours; let i = index" class="appointment__time">
+        <span>{{i + 1 | hour}}</span>
+      </div>
+    </div>
+    <div class="table__content" cdkDropList (cdkDropListDropped)="drop($event)">
+      <div class="appointment__body" *ngFor="let hour of hours; let i = index" (click)="addAppointment(hour)" >
+        <div class="drag-box" cdkDrag (contextmenu)="deleteAppointment($event, hour)">
+          <div *ngIf="appointments[hour]" class="drag">
+              <div>{{ appointments[hour].title }}</div>
+              <div>{{appointments[hour].from | hour}}-{{appointments[hour].to | hour}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
